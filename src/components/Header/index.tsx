@@ -11,7 +11,9 @@ export const Header: React.FC<IHeader> = ({ onOpenNewTransactionModal }) => {
   return (
     <Container>
       <Content>
-        <img src={LogoImg} alt="dt money" />
+        <label>
+          <img src={LogoImg} alt="SeFinancas" /> <span>SeFinanças</span>
+        </label>
         <button onClick={onOpenNewTransactionModal}> Nova Transação </button>
       </Content>
     </Container>
