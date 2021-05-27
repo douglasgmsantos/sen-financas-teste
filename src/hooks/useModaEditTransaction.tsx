@@ -52,7 +52,7 @@ export const TransactionProvider = ({ children }: ITransactionProvider) => {
 
 
   const deleteTransaction = async (id: string) => {
-    const newTransactions = transactions.filter((transaction: ITransaction) => transaction.id != id);
+    const newTransactions = transactions.filter((transaction: ITransaction) => transaction.id !== id);
     cookies.set("@SEFINANCES:transactions", JSON.stringify(newTransactions));
     setTransactions(newTransactions);
   }

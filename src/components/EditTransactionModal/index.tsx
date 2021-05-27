@@ -44,7 +44,7 @@ const EditTransactionModal: React.FC<IEditTransactionModal> = ({ isOpen, onReque
 
     loadTransaction();
 
-  }, [idTransactionEditable])
+  }, [idTransactionEditable, transactions])
 
   const handleCreateNewTransaction = async (event: FormEvent) => {
     event.preventDefault();

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 
 import { Container } from './styles';
@@ -6,7 +6,6 @@ import { Container } from './styles';
 import TransactionFilter from '../TransactionFilter';
 
 import { useTransaction } from '../../hooks/useTransaction';
-import { number } from 'prop-types';
 
 interface ITransactionTable {
   onOpenEditTransactionModal(id: string): void;
