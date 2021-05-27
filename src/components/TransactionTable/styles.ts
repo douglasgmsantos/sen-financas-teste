@@ -46,15 +46,15 @@ table {
       color: var(--red);
     }
 
-    button {
+    div {
       border: 0;
       background: transparent;
 
       &.edit{
-        color: var(--text-title);
+        color: var(--blue);
       }
       &.remove{
-        color: var(--red);
+        color: var(--blue);
       }
     }
   }

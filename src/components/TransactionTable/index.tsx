@@ -43,14 +43,14 @@ const TransactionTable: React.FC<ITransactionTable> = ({ onOpenEditTransactionMo
                   <td>{transaction.category}</td>
                   <td>{new Intl.DateTimeFormat().format(new Date(transaction.createdAt))}</td>
                   <td>
-                    <button className="edit" onClick={() => handleEditTransaction(transaction.id)}>
+                    <div className="edit" onClick={() => handleEditTransaction(transaction.id)}>
                       <FaRegEdit size={20} />
-                    </button>
+                    </div>
                   </td>
                   <td>
-                    <button className="remove" onClick={() => handleDeleteTransaction(transaction.id)}>
+                    <div className="remove" onClick={() => handleDeleteTransaction(transaction.id)}>
                       <FaRegTrashAlt size={20} />
-                    </button>
+                    </div>
                   </td>
                 </tr>
               ))}
