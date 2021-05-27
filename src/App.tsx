@@ -10,7 +10,6 @@ import { Header } from './components/Header';
 import Dashboard from './components/Dashboard';
 
 import NewTransactionModal from './components/NewTransactionModal';
-import EditTransactionModal from './components/EditTransactionModal';
 
 Modal.setAppElement("#root")
 

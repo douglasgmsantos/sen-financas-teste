@@ -34,7 +34,7 @@ const EditTransactionModal: React.FC<IEditTransactionModal> = ({ isOpen, onReque
 
     const loadTransaction = async () => {
       if (!Boolean(idTransactionEditable)) return;
-      const [transaction] = await transactions.filter(transaction => transaction.id == idTransactionEditable);
+      const [transaction] = await transactions.filter(transaction => transaction.id === idTransactionEditable);
 
       setType(transaction.type);
       setTitle(transaction.title);
