@@ -66,7 +66,7 @@ export const TransactionProvider = ({ children }: ITransactionProvider) => {
   }
 
   const deleteTransaction = async (id: string) => {
-    const newTransactions = transactions.filter((transaction: ITransaction) => transaction.id != id);
+    const newTransactions = transactions.filter((transaction: ITransaction) => transaction.id !== id);
     cookies.set("@SEFINANCES:transactions", JSON.stringify(newTransactions));
     setTransactions(newTransactions);
   }
@@ -95,7 +95,7 @@ export const TransactionProvider = ({ children }: ITransactionProvider) => {
   return (
     <TransactionsContext.Provider value={{
       transactions: transactions.filter(transaction => filterType === "all" || (transaction.type === filterType))
-        .filter(transaction => filterCategory === "" || (transaction.category.toLocaleUpperCase().indexOf(filterCategory.toLocaleUpperCase()) != -1))
+        .filter(transaction => filterCategory === "" || (transaction.category.toLocaleUpperCase().indexOf(filterCategory.toLocaleUpperCase()) !== -1))
         .filter(transaction => {
           const dtTransactionFormat = Intl.DateTimeFormat("pt-BR").format(new Date(transaction.createdAt)).split("/").reverse().join().toString().replaceAll(",", "");
           const dtInitFormat = dtInit.split("-").join().toString().replaceAll(",", "");
