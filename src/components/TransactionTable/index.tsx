@@ -1,15 +1,23 @@
 import React from 'react';
 
 import { Container } from './styles';
+import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import { useTransaction } from '../../hooks/useTransaction';
 
-const TransactionTable: React.FC = () => {
-  const { transactions } = useTransaction();
+interface ITransactionTable {
+  onOpenEditTransactionModal(id: string): void;
+}
+
+const TransactionTable: React.FC<ITransactionTable> = ({ onOpenEditTransactionModal }: ITransactionTable) => {
+  const { transactions, deleteTransaction } = useTransaction();
+
+  const handleDeleteTransaction = (id: string) => deleteTransaction(id);
+  const handleEditTransaction = (id: string) => onOpenEditTransactionModal(id);
 
   return (
     <Container>
       {!transactions.length ? (
-        <div>Nenhum dado foi encontrado. Por gentileza cadastre uma transação.</div>
+        <div>Nenhum dado foi encontrado. Por gentileza cadastre uma nova transação...</div>
       ) : (
           <table>
             <thead>
@@ -18,6 +26,8 @@ const TransactionTable: React.FC = () => {
                 <th>Valor</th>
                 <th>Categoria</th>
                 <th>Data</th>
+                <th></th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -32,6 +42,16 @@ const TransactionTable: React.FC = () => {
                   </td>
                   <td>{transaction.category}</td>
                   <td>{new Intl.DateTimeFormat().format(new Date(transaction.createdAt))}</td>
+                  <td>
+                    <button className="edit" onClick={() => handleEditTransaction(transaction.id)}>
+                      <FaRegEdit size={20} />
+                    </button>
+                  </td>
+                  <td>
+                    <button className="remove" onClick={() => handleDeleteTransaction(transaction.id)}>
+                      <FaRegTrashAlt size={20} />
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>

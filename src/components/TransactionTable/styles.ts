@@ -45,6 +45,18 @@ table {
     &.withdraw{
       color: var(--red);
     }
+
+    button {
+      border: 0;
+      background: transparent;
+
+      &.edit{
+        color: var(--text-title);
+      }
+      &.remove{
+        color: var(--red);
+      }
+    }
   }
 }
   

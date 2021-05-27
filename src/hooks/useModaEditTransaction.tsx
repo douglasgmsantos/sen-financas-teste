@@ -14,7 +14,6 @@ interface ITransaction {
 }
 
 type ICreateTransaction = Omit<ITransaction, 'id' | 'createdAt'>
-type IUpdateTransaction = Omit<ITransaction, 'id' | 'createdAt'>
 
 interface ITransactionProvider {
   children: ReactNode
@@ -24,7 +23,6 @@ interface ITransactionContext {
   transactions: ITransaction[];
   createNewTransaction(transaction: ICreateTransaction): Promise<void>;
   deleteTransaction(id: string): Promise<void>;
-  updateTransaction(id: string, transaction: IUpdateTransaction): Promise<void>;
 }
 
 const TransactionsContext = createContext<ITransactionContext>({} as ITransactionContext);
@@ -51,22 +49,10 @@ export const TransactionProvider = ({ children }: ITransactionProvider) => {
     setTransactions([...transactions, transaction])
   }
 
+
+
   const deleteTransaction = async (id: string) => {
     const newTransactions = transactions.filter((transaction: ITransaction) => transaction.id != id);
-    cookies.set("@SEFINANCES:transactions", JSON.stringify(newTransactions));
-    setTransactions(newTransactions);
-  }
-
-  const updateTransaction = async (id: string, transactionEdit: ICreateTransaction) => {
-    let newTransactions = JSON.parse(JSON.stringify(transactions));
-
-    const index = newTransactions.findIndex((transaction: ITransaction) => transaction.id == id);
-    newTransactions[index] = {
-      ...transactionEdit,
-      id,
-      createdAt: newTransactions[index].createdAt
-    }
-
     cookies.set("@SEFINANCES:transactions", JSON.stringify(newTransactions));
     setTransactions(newTransactions);
   }
@@ -75,8 +61,7 @@ export const TransactionProvider = ({ children }: ITransactionProvider) => {
     <TransactionsContext.Provider value={{
       transactions,
       createNewTransaction,
-      deleteTransaction,
-      updateTransaction
+      deleteTransaction
     }}>
       {children}
     </TransactionsContext.Provider>
