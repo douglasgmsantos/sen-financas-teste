@@ -49,6 +49,11 @@ table {
       border: 0;
       background: transparent;
 
+      &.edit, &.remove {
+        margin: auto;
+        cursor: pointer;
+      }
+
       &.edit{
         color: var(--blue);
       }

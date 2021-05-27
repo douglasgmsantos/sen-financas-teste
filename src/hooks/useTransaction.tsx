@@ -33,6 +33,7 @@ interface ITransactionContext {
   handleFilterType(text: string): void;
   handleDtInit(text: string): void;
   handleDtEnd(text: string): void;
+  emptyFilter(): void;
 }
 
 const TransactionsContext = createContext<ITransactionContext>({} as ITransactionContext);
@@ -84,6 +85,13 @@ export const TransactionProvider = ({ children }: ITransactionProvider) => {
     setTransactions(newTransactions);
   }
 
+  const emptyFilter = () => {
+    setFilterCategory("")
+    setFilterType("all")
+    setDtInit("")
+    setDtEnd("")
+  }
+
   return (
     <TransactionsContext.Provider value={{
       transactions: transactions.filter(transaction => filterType === "all" || (transaction.type === filterType))
@@ -112,6 +120,7 @@ export const TransactionProvider = ({ children }: ITransactionProvider) => {
       handleFilterType: setFilterType,
       handleDtInit: setDtInit,
       handleDtEnd: setDtEnd,
+      emptyFilter
     }}>
       {children}
     </TransactionsContext.Provider>

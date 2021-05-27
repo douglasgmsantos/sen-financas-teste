@@ -12,7 +12,8 @@ const TransactionFilter: React.FC = () => {
     handleFilterCategory,
     handleFilterType,
     handleDtInit,
-    handleDtEnd
+    handleDtEnd,
+    emptyFilter
   } = useTransaction();
 
   return (
@@ -26,6 +27,7 @@ const TransactionFilter: React.FC = () => {
       <input onChange={(e) => handleFilterCategory(e.target.value)} value={filterCategoryTransaction} placeholder="Categoria" />
       <input type="date" value={dtInitTransaction} onChange={(e) => handleDtInit(e.target.value)} placeholder="Data inicial" />
       <input type="date" value={dtEndTransaction} onChange={(e) => handleDtEnd(e.target.value)} placeholder="Data final" />
+      <button onClick={emptyFilter}> Limpar Filtros </button>
     </Container>
   )
 }
